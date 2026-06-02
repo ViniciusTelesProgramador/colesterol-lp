@@ -90,7 +90,7 @@ export default function App() {
         scrollTrigger: {
           trigger: '.protocol-wrapper',
           start: 'top top',
-          end: `+=${window.innerHeight * 2.5}`, // Altura de scroll total para 3 cards
+          end: `+=${window.innerHeight * 1.5}`, // Altura de scroll total reduzida para transições mais rápidas
           scrub: true,
           pin: true,
           anticipatePin: 1,
@@ -105,14 +105,14 @@ export default function App() {
             { yPercent: 0, duration: 1, ease: 'none' }
           );
           
-          // Animate the previous card going back (scale down, blur, reduce opacity)
+          // Animate the previous card going back (scale down slightly, soft blur, reduce opacity)
           const prevCard = cards[index - 1];
           tl.to(prevCard, {
-            scale: 0.9,
-            filter: 'blur(20px)',
-            opacity: 0.5,
-            duration: 0.6,
-            ease: 'power2.inOut'
+            scale: 0.96,
+            filter: 'blur(4px)',
+            opacity: 0.35,
+            duration: 1, // Sincronizado perfeitamente com a duração de entrada
+            ease: 'none'
           }, '<'); // '<' faz rodar ao mesmo tempo que o slide anterior
         }
       });
