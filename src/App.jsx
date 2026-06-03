@@ -90,7 +90,7 @@ export default function App() {
         scrollTrigger: {
           trigger: '.protocol-wrapper',
           start: 'top top',
-          end: `+=${window.innerHeight * 1.5}`, // Altura de scroll total reduzida para transições mais rápidas
+          end: `+=${window.innerHeight * 1.2}`, // Altura de scroll total reduzida para transições mais rápidas e snappier
           scrub: true,
           pin: true,
           anticipatePin: 1,
@@ -433,10 +433,10 @@ export default function App() {
 
       {/* F. SEÇÃO PROTOCOL — "Sticky Stacking" */}
       <section id="protocolo" className="relative bg-dark text-white border-t border-white/5">
-        <div className="protocol-wrapper w-full relative">
+        <div className="protocol-wrapper w-full h-screen relative overflow-hidden">
           
           {/* Card 1 */}
-          <div className="protocol-card w-full h-screen bg-[#1F2E25] flex items-center justify-center px-6 md:px-12 sticky top-0">
+          <div className="protocol-card w-full h-screen bg-[#1F2E25] flex items-center justify-center px-6 md:px-12 absolute inset-0">
             <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="flex flex-col gap-6">
                 <span className="font-mono text-sm text-accent tracking-widest font-semibold">PASSO 01</span>
@@ -465,7 +465,7 @@ export default function App() {
           </div>
 
           {/* Card 2 */}
-          <div className="protocol-card w-full h-screen bg-[#2A3C31] flex items-center justify-center px-6 md:px-12 sticky top-0">
+          <div className="protocol-card w-full h-screen bg-[#2A3C31] flex items-center justify-center px-6 md:px-12 absolute inset-0 translate-y-full">
             <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="flex flex-col gap-6">
                 <span className="font-mono text-sm text-accent tracking-widest font-semibold">PASSO 02</span>
@@ -501,7 +501,7 @@ export default function App() {
           </div>
 
           {/* Card 3 */}
-          <div className="protocol-card w-full h-screen bg-[#34473C] flex items-center justify-center px-6 md:px-12 sticky top-0">
+          <div className="protocol-card w-full h-screen bg-[#34473C] flex items-center justify-center px-6 md:px-12 absolute inset-0 translate-y-full">
             <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="flex flex-col gap-6">
                 <span className="font-mono text-sm text-accent tracking-widest font-semibold">PASSO 03</span>
