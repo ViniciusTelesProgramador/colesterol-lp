@@ -9,7 +9,7 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 // Link de checkout da Kiwify (pode ser editado facilmente pelo usuário)
-const KIWIFY_CHECKOUT_URL = "https://pay.kiwify.com.br/colesterol-fora";
+const KIWIFY_CHECKOUT_URL = "https://pay.kiwify.com.br/GSu7b92";
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
