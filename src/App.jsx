@@ -3,13 +3,17 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
   Shield, Check, ChevronDown, MessageSquare, ArrowRight, Activity, 
-  Menu, X, BookOpen, AlertCircle, Heart, Star, Sparkles, Droplet
+  Menu, X, BookOpen, AlertCircle, Heart, Star, Sparkles, Droplet,
+  CheckCircle, UserCheck
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Link de checkout da Kiwify (pode ser editado facilmente pelo usuário)
 const KIWIFY_CHECKOUT_URL = "https://pay.kiwify.com.br/GSu7b92";
+
+// Link de checkout com desconto para o Popup de Exit Intent
+const KIWIFY_DISCOUNT_URL = "https://pay.kiwify.com.br/GSu7b92?discount=27"; // Substitua pelo link direto do checkout de R$27
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -151,7 +155,7 @@ export default function App() {
             href={KIWIFY_CHECKOUT_URL}
             className="btn-premium bg-accent hover:bg-accentHover text-white text-xs px-5 py-2.5 rounded-full font-bold shadow-md hover:scale-103 transition-transform"
           >
-            Quero Agora — R$37
+            Quero Agora — <span className="line-through opacity-70 mr-1">R$47</span> R$37
           </a>
         </div>
 
@@ -199,7 +203,7 @@ export default function App() {
               href={KIWIFY_CHECKOUT_URL}
               className="btn-premium bg-accent hover:bg-accentHover text-white py-3 rounded-full text-center font-bold text-sm mt-2"
             >
-              QUERO MEU GUIA AGORA — R$37
+              QUERO MEU GUIA AGORA — <span className="line-through opacity-70 mr-1">R$47</span> R$37
             </a>
           </div>
         )}
@@ -241,7 +245,7 @@ export default function App() {
               href={KIWIFY_CHECKOUT_URL}
               className="btn-premium bg-accent hover:bg-accentHover text-white text-sm md:text-base px-8 py-4 rounded-full font-bold shadow-lg hover:scale-103 transition-transform"
             >
-              QUERO MEU GUIA AGORA — R$37
+              QUERO MEU GUIA AGORA — <span className="line-through opacity-70 mr-1.5">R$47</span> R$37
             </a>
           </div>
 
@@ -600,10 +604,15 @@ export default function App() {
 
           {/* Preço Principal */}
           <div className="flex flex-col items-center mb-4">
-            <span className="font-heading font-black text-6xl md:text-8xl text-white tracking-tighter">
+            <span className="text-white/50 line-through text-lg font-mono">De R$ 47</span>
+            <CountdownTimer />
+            <span className="font-heading font-black text-6xl md:text-8xl text-white tracking-tighter mt-2">
               R$ 37
             </span>
-            <span className="font-mono text-xs text-accent mt-2 tracking-widest uppercase font-semibold">
+            <span className="text-accent text-xs font-semibold mt-1">
+              Oferta por tempo limitado
+            </span>
+            <span className="font-mono text-[10px] text-white/40 mt-1 tracking-widest uppercase font-semibold">
               pagamento único • acesso vitalício
             </span>
           </div>
@@ -613,12 +622,34 @@ export default function App() {
             href={KIWIFY_CHECKOUT_URL}
             className="w-full btn-premium bg-accent hover:bg-accentHover text-white py-5 text-lg rounded-full font-bold shadow-xl hover:scale-103 transition-transform"
           >
-            QUERO MEU GUIA AGORA — R$37
+            QUERO MEU GUIA AGORA — <span className="line-through opacity-70 mr-1.5">R$47</span> R$37
           </a>
 
           <p className="text-[10px] text-white/50 -mt-2">
             Ao clicar, você será redirecionado para o checkout seguro da Kiwify.
           </p>
+
+          {/* Selo de Garantia de 7 Dias */}
+          <div className="w-full bg-white border border-primary rounded-[12px] p-[20px] shadow-sm text-dark flex flex-col items-center gap-4 mt-6">
+            <Shield className="w-10 h-10 text-primary" style={{ width: '40px', height: '40px' }} />
+            <h4 className="font-heading font-bold text-center text-primary text-base">
+              Garantia Incondicional de 7 Dias
+            </h4>
+            <p className="text-center text-xs md:text-sm text-dark/85 leading-relaxed">
+              Se por qualquer motivo você não ficar satisfeito, basta enviar um e-mail em até 7 dias e devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 border-t border-primary/10 pt-4 w-full text-xs font-semibold text-primary">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-primary" /> Sem risco
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-primary" /> Sem perguntas
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-primary" /> 100% do valor
+              </span>
+            </div>
+          </div>
 
           {/* Benefícios Rápidos */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mt-6 border-t border-white/10 pt-6 text-left font-mono text-[11px] text-white/70">
@@ -733,6 +764,10 @@ export default function App() {
           
         </div>
       </footer>
+
+      {/* Popups e Notificações de Conversão */}
+      <ExitIntentPopup />
+      <SocialProof />
 
     </div>
   );
@@ -1013,6 +1048,258 @@ function FaqAccordion({ question, answer }) {
         <p className="px-6 pb-6 text-dark/70 text-sm leading-relaxed">
           {answer}
         </p>
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// NEW COMPONENTS FOR LP UPDATES
+// ==========================================
+
+// MUDANÇA 4 — CRONÔMETRO DISCRETO
+function CountdownTimer() {
+  const [seconds, setSeconds] = useState(587); // 9 minutos e 47 segundos
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((prev) => {
+        if (prev <= 1) {
+          return 587; // Reinicia do zero
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (totalSeconds) => {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const isLowTime = seconds < 120; // abaixo de 2 minutos
+
+  return (
+    <div className="text-[11px] text-[#888] font-mono bg-transparent select-none mt-1">
+      ⏱ Oferta expira em{' '}
+      <span 
+        style={{ color: isLowTime ? '#E53935' : '#888' }} 
+        className="transition-colors duration-300 font-bold"
+      >
+        {formatTime(seconds)}
+      </span>
+    </div>
+  );
+}
+
+// MUDANÇA 3 — POPUP DE EXIT INTENT
+function ExitIntentPopup() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    // Só ativa após 5 segundos de página
+    const delayTimer = setTimeout(() => {
+      const handleMouseLeave = (e) => {
+        // Direção do topo (clientY < 10)
+        if (e.clientY < 10) {
+          // Aparece apenas UMA vez por sessão
+          if (!sessionStorage.getItem("exitPopupShown")) {
+            setIsOpen(true);
+            sessionStorage.setItem("exitPopupShown", "true");
+            // Dá tempo para o React renderizar o DOM antes de iniciar a transição CSS
+            setTimeout(() => setAnimate(true), 50);
+          }
+        }
+      };
+
+      document.addEventListener("mouseleave", handleMouseLeave);
+      return () => {
+        document.removeEventListener("mouseleave", handleMouseLeave);
+      };
+    }, 5000);
+
+    return () => clearTimeout(delayTimer);
+  }, []);
+
+  if (!isOpen) return null;
+
+  const handleClose = () => {
+    setAnimate(false);
+    // Espera a animação de saída de 300ms antes de desmontar o modal do DOM
+    setTimeout(() => setIsOpen(false), 300);
+  };
+
+  const handleOverlayClick = (e) => {
+    // Fecha se o usuário clicar no fundo
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
+
+  return (
+    <div 
+      onClick={handleOverlayClick}
+      className={`fixed inset-0 z-[10000] flex items-center justify-center bg-black/75 px-4 transition-opacity duration-300 ${
+        animate ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      <div 
+        className={`relative w-full max-w-[480px] bg-white rounded-2xl p-8 md:p-10 shadow-2xl flex flex-col items-center text-center transition-all duration-300 ${
+          animate ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
+        }`}
+      >
+        {/* Botão X para fechar */}
+        <button 
+          onClick={handleClose}
+          className="absolute top-4 right-4 p-2 text-dark/40 hover:text-dark transition-colors"
+          aria-label="Fechar"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Tag vermelha */}
+        <span className="bg-[#E53935]/10 text-[#E53935] text-[10px] font-mono font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+          ESPERA! Oferta exclusiva
+        </span>
+
+        {/* Títulos */}
+        <h3 className="font-heading font-black text-2xl md:text-3xl text-dark leading-tight mb-2">
+          Não vá embora sem o seu desconto
+        </h3>
+        <p className="text-dark/60 text-xs md:text-sm mb-6 leading-relaxed">
+          Essa oferta expira quando você fechar esta página.
+        </p>
+
+        {/* Bloco de preço */}
+        <div className="flex flex-col items-center bg-[#F2F0E9]/40 border border-primary/5 rounded-2xl p-4 w-full mb-6">
+          <span className="text-[12px] text-dark/40 line-through font-mono leading-none mb-1">
+            De R$47
+          </span>
+          <span className="text-4xl md:text-5xl font-heading font-black text-[#2E7D52] tracking-tighter leading-none mb-2">
+            R$27
+          </span>
+          <span className="bg-[#2E7D52]/10 text-[#2E7D52] text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+            Você economiza R$20
+          </span>
+        </div>
+
+        {/* Lista de itens */}
+        <div className="flex flex-col gap-3 w-full text-left mb-6 font-semibold text-xs md:text-sm text-dark/80">
+          <div className="flex items-center gap-2.5">
+            <Check className="w-4 h-4 text-[#2E7D52] flex-shrink-0" />
+            <span>PDF completo com 12 capítulos</span>
+          </div>
+          <div className="flex items-center gap-2.5">
+            <Check className="w-4 h-4 text-[#2E7D52] flex-shrink-0" />
+            <span>Protocolo de 21 dias passo a passo</span>
+          </div>
+          <div className="flex items-center gap-2.5">
+            <Check className="w-4 h-4 text-[#2E7D52] flex-shrink-0" />
+            <span>Cardápio semanal + lista de compras</span>
+          </div>
+        </div>
+
+        {/* Botão CTA */}
+        <a 
+          href={KIWIFY_DISCOUNT_URL} 
+          className="w-full bg-[#2E7D52] hover:bg-[#256341] text-white py-4 px-6 rounded-full font-bold text-center text-sm md:text-base shadow-lg transition-transform duration-300 hover:scale-103 mb-3 uppercase tracking-wider"
+        >
+          QUERO POR R$27 AGORA
+        </a>
+
+        {/* Informação adicional */}
+        <p className="text-[10px] text-dark/40 mb-5">
+          Garantia de 7 dias. Entrega imediata no e-mail.
+        </p>
+
+        {/* Botão de Rejeição */}
+        <button 
+          onClick={handleClose}
+          className="text-[11px] text-dark/40 hover:text-dark/70 transition-colors font-medium underline"
+        >
+          Não, prefiro pagar R$47 mais tarde
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// MUDANÇA 5 — POPUP DE PROVA SOCIAL
+function SocialProof() {
+  const [notification, setNotification] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const timerRef = useRef(null);
+  const hideTimerRef = useRef(null);
+
+  const names = [
+    "Maria S. — São Paulo", "João R. — Belo Horizonte", "Ana C. — Fortaleza",
+    "Carlos M. — Recife", "Fernanda L. — Curitiba", "Roberto A. — Salvador",
+    "Patricia O. — Manaus", "Lucas T. — Porto Alegre", "Beatriz N. — Brasília",
+    "Eduardo F. — Goiânia", "Marcia V. — Campinas", "Thiago B. — Natal",
+    "Claudia R. — Florianópolis", "Anderson S. — Belém", "Juliana M. — São Luís"
+  ];
+
+  const showNotification = () => {
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    const randomMinutes = Math.floor(Math.random() * 8) + 1;
+    setNotification({ name: randomName, minutes: randomMinutes });
+    setVisible(true);
+
+    hideTimerRef.current = setTimeout(() => {
+      setVisible(false);
+    }, 4000); // Fica visível por 4 segundos
+  };
+
+  useEffect(() => {
+    // Primeira notificação após 8 segundos
+    const initialTimeout = setTimeout(() => {
+      showNotification();
+
+      // Novas notificações a cada 35 segundos
+      const intervalId = setInterval(() => {
+        showNotification();
+      }, 35000);
+
+      timerRef.current = intervalId;
+    }, 8000);
+
+    timerRef.current = initialTimeout;
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(timerRef.current);
+      clearTimeout(hideTimerRef.current);
+    };
+  }, []);
+
+  if (!notification) return null;
+
+  return (
+    <div
+      style={{
+        transform: visible ? 'translateX(0)' : 'translateX(120%)',
+        opacity: visible ? 1 : 0,
+        transition: 'transform 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease-out',
+      }}
+      className="fixed bottom-6 right-6 z-[9999] max-w-[280px] w-full bg-white rounded-[10px] p-3.5 border-l-[3px] border-[#2E7D52] shadow-[0_4px_20px_rgba(0,0,0,0.12)] flex items-start gap-3 select-none pointer-events-none"
+    >
+      <div className="w-[30px] h-[30px] bg-[#2E7D52]/10 rounded-full flex items-center justify-center text-[#2E7D52] flex-shrink-0 mt-0.5">
+        <UserCheck className="w-[18px] h-[18px]" />
+      </div>
+      <div className="flex flex-col gap-0.5 text-left">
+        <span className="font-bold text-[12px] text-[#1A1A1A] leading-tight">
+          {notification.name}
+        </span>
+        <span className="text-[11px] text-[#666] leading-tight">
+          acabou de adquirir o guia
+        </span>
+        <span className="text-[10px] text-[#2E7D52] font-semibold mt-0.5 leading-none">
+          há {notification.minutes} minutos
+        </span>
       </div>
     </div>
   );
