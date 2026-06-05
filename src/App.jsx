@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const KIWIFY_CHECKOUT_URL = "https://pay.kiwify.com.br/GSu7b92";
 
 // Link de checkout com desconto para o Popup de Exit Intent
-const KIWIFY_DISCOUNT_URL = "https://pay.kiwify.com.br/GSu7b92?discount=27"; // Substitua pelo link direto do checkout de R$27
+const KIWIFY_DISCOUNT_URL = "https://pay.kiwify.com.br/Lvzjpip"; // Substitua pelo link direto do checkout de R$27
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
