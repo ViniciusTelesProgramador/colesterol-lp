@@ -18,14 +18,28 @@ const KIWIFY_DISCOUNT_URL = "https://pay.kiwify.com.br/Lvzjpip"; // Substitua pe
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showFloatingCta, setShowFloatingCta] = useState(false);
   
   // Ref para GSAP animations
   const appRef = useRef(null);
 
-  // Monitorar scroll para Navbar "Ilha Flutuante"
+  // Monitorar scroll para Navbar e CTA Flutuante
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 80);
+
+      // Controle do CTA flutuante
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollHeight > 0) {
+        const scrolledPercent = (window.scrollY / scrollHeight) * 100;
+        const precoSection = document.getElementById('preco');
+        let isPastPreco = false;
+        if (precoSection) {
+          const rect = precoSection.getBoundingClientRect();
+          isPastPreco = rect.top <= window.innerHeight;
+        }
+        setShowFloatingCta(scrolledPercent >= 40 && !isPastPreco);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -223,36 +237,39 @@ export default function App() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-primary/80 to-transparent opacity-90" />
 
         {/* Content Container (Bottom-left aligned) */}
-        <div className="relative z-10 w-full max-w-5xl px-6 md:px-12 pb-16 md:pb-24 flex flex-col items-start gap-4">
+        <div className="relative z-10 w-full max-w-5xl px-6 md:px-12 pb-8 pt-24 md:pb-24 flex flex-col items-center md:items-start gap-2.5 md:gap-4 text-center md:text-left">
           <div className="overflow-hidden">
-            <span className="hero-anim block font-heading font-extrabold text-white text-3xl md:text-5xl uppercase tracking-wider">
-              Seu colesterol alto é
+            <span className="hero-anim block font-heading font-extrabold text-white text-xl md:text-5xl uppercase tracking-wider">
+              Colesterol alto é
             </span>
           </div>
-          <div className="overflow-hidden leading-none -mt-2">
-            <h1 className="hero-anim block font-drama italic text-accent text-7xl md:text-9xl lg:text-[10rem] font-bold">
+          <div className="overflow-hidden leading-none -mt-1 md:-mt-2">
+            <h1 className="hero-anim block font-drama italic text-accent text-5xl md:text-9xl lg:text-[10rem] font-bold">
               Reversível.
             </h1>
           </div>
           <div className="overflow-hidden">
-            <p className="hero-anim block text-white/80 font-sans text-base md:text-xl max-w-xl">
-              Descubra o protocolo alimentar de 21 dias que médicos não prescrevem — mas a ciência comprova.
+            <p className="hero-anim block text-white/80 font-sans text-sm md:text-xl max-w-xl">
+              O protocolo de 21 dias<br className="md:hidden" /> comprovado pela ciência.
             </p>
           </div>
           
-          <div className="hero-anim mt-4">
+          <div className="hero-anim mt-2 md:mt-4 w-full md:w-auto flex flex-col items-center md:items-start gap-2">
             <a 
               href={KIWIFY_CHECKOUT_URL}
-              className="btn-premium bg-accent hover:bg-accentHover text-white text-sm md:text-base px-8 py-4 rounded-full font-bold shadow-lg hover:scale-103 transition-transform"
+              className="w-full md:w-auto btn-premium bg-accent hover:bg-accentHover text-white text-xs md:text-base px-6 md:px-8 py-3.5 md:py-4 rounded-full font-bold shadow-lg hover:scale-103 transition-transform text-center"
             >
               QUERO MEU GUIA AGORA — <span className="line-through opacity-70 mr-1.5">R$47</span> R$37
             </a>
+            <span className="text-[10px] md:text-xs text-white/60 text-center w-full md:text-left mt-1 block">
+              ⭐⭐⭐⭐⭐ &nbsp;+847 pessoas já transformaram seus exames
+            </span>
           </div>
 
-          <div className="hero-anim font-mono text-[10px] md:text-xs text-white/60 mt-3 flex items-center gap-4 flex-wrap">
-            <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-accent" /> Entrega imediata</span>
-            <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-accent" /> Garantia de 7 dias</span>
-            <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-accent" /> PDF completo</span>
+          <div className="hero-anim font-mono text-[9px] md:text-xs text-white/60 mt-2 md:mt-3 flex items-center justify-center md:justify-start gap-3 md:gap-4 flex-wrap w-full md:w-auto">
+            <span className="flex items-center gap-1"><Check className="w-3 h-3 md:w-3.5 md:h-3.5 text-accent" /> Entrega imediata</span>
+            <span className="flex items-center gap-1"><Check className="w-3 h-3 md:w-3.5 md:h-3.5 text-accent" /> Garantia de 7 dias</span>
+            <span className="flex items-center gap-1"><Check className="w-3 h-3 md:w-3.5 md:h-3.5 text-accent" /> PDF completo</span>
           </div>
         </div>
       </section>
@@ -579,8 +596,92 @@ export default function App() {
         </div>
       </section>
 
+      {/* AJUSTE 4 — PROVA SOCIAL REAL */}
+      <section className="py-24 px-6 md:px-12 bg-white flex flex-col items-center border-t border-primary/5">
+        <div className="w-full max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="font-heading font-extrabold text-primary text-3xl md:text-5xl tracking-tight">
+              O que dizem quem já usou o protocolo
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="relative bg-white p-6 rounded-[12px] border border-primary/10 shadow-sm flex flex-col justify-between gap-4">
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <div className="text-amber-500 text-sm">⭐⭐⭐⭐⭐</div>
+                  <span className="bg-emerald-500/10 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    Compra verificada
+                  </span>
+                </div>
+                <p className="text-dark/80 italic text-sm md:text-base leading-relaxed">
+                  "Fiz os exames 30 dias depois de começar o protocolo. Meu LDL caiu de 178 para 142. Minha médica ficou surpresa e perguntou o que eu tinha feito diferente."
+                </p>
+              </div>
+              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3">
+                Rosana M. — Fortaleza, CE
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="relative bg-white p-6 rounded-[12px] border border-primary/10 shadow-sm flex flex-col justify-between gap-4">
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <div className="text-amber-500 text-sm">⭐⭐⭐⭐⭐</div>
+                  <span className="bg-emerald-500/10 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    Compra verificada
+                  </span>
+                </div>
+                <p className="text-dark/80 italic text-sm md:text-base leading-relaxed">
+                  "Tentei várias dietas antes e nunca consegui seguir. Esse guia é diferente porque é prático — tem o cardápio pronto, a lista de compras, tudo mastigado. Recomendo muito."
+                </p>
+              </div>
+              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3">
+                Carlos A. — São Paulo, SP
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative bg-white p-6 rounded-[12px] border border-primary/10 shadow-sm flex flex-col justify-between gap-4">
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <div className="text-amber-500 text-sm">⭐⭐⭐⭐⭐</div>
+                  <span className="bg-emerald-500/10 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    Compra verificada
+                  </span>
+                </div>
+                <p className="text-dark/80 italic text-sm md:text-base leading-relaxed">
+                  "Comprei com o pé atrás por ser só R$37. Mas o conteúdo é sério, muito bem explicado. Já indiquei para minha mãe e minha tia que também têm colesterol alto."
+                </p>
+              </div>
+              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3">
+                Fernanda L. — Belo Horizonte, MG
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AJUSTE 2 — BLOCO DE DOR */}
+      <section className="py-20 px-6 md:px-12 bg-[#EAECE6] text-dark flex flex-col items-center">
+        <div className="w-full max-w-2xl text-center md:text-center flex flex-col gap-6 text-[15px] md:text-lg text-dark/95 leading-relaxed">
+          <p>
+            Cada dia com colesterol alto é mais um dia acumulando risco.
+          </p>
+          <div className="flex flex-col gap-2">
+            <p className="font-bold">O exame não melhora sozinho.</p>
+            <p className="font-bold">A alimentação não muda sem um plano claro.</p>
+            <p className="font-bold">O médico não tem tempo de te ensinar o que comer no dia a dia.</p>
+          </div>
+          <p>
+            Por R$37 — menos que uma consulta, menos que um mês de suplemento — você tem o protocolo completo, o cardápio pronto e o plano de 21 dias para começar hoje.
+          </p>
+        </div>
+      </section>
+
       {/* H. SEÇÃO PRICING — Oferta única */}
-      <section className="py-24 px-6 md:px-12 bg-primary text-white flex flex-col items-center relative overflow-hidden">
+      <section id="preco" className="py-24 px-6 md:px-12 bg-primary text-white flex flex-col items-center relative overflow-hidden">
         {/* Subtle decorative laser lines */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-80" />
         
@@ -596,24 +697,27 @@ export default function App() {
           </p>
 
           {/* Preços Ancorados */}
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-center font-mono text-sm text-white/50 my-2">
-            <span className="line-through">Consulta nutricional: R$250+</span>
-            <span className="hidden md:inline">•</span>
-            <span className="line-through">Suplementos por 30 dias: R$150+</span>
+          <div className="flex flex-col gap-2 items-center justify-center font-mono text-sm text-white/50">
+            <span className="line-through">Consulta nutricional: R$250</span>
+            <span className="line-through">Suplementos por 30 dias: R$180</span>
           </div>
 
+          {/* Separador visual */}
+          <div className="w-24 h-[1px] bg-white/20 my-4" />
+
+          {/* Texto de transição */}
+          <span className="text-white/80 font-heading text-sm md:text-base uppercase tracking-wider font-semibold">
+            Seu investimento hoje:
+          </span>
+
           {/* Preço Principal */}
-          <div className="flex flex-col items-center mb-4">
-            <span className="text-white/50 line-through text-lg font-mono">De R$ 47</span>
+          <div className="flex flex-col items-center mb-4 mt-2">
             <CountdownTimer />
             <span className="font-heading font-black text-6xl md:text-8xl text-white tracking-tighter mt-2">
               R$ 37
             </span>
-            <span className="text-accent text-xs font-semibold mt-1">
-              Oferta por tempo limitado
-            </span>
-            <span className="font-mono text-[10px] text-white/40 mt-1 tracking-widest uppercase font-semibold">
-              pagamento único • acesso vitalício
+            <span className="font-mono text-[10px] text-white/60 mt-2 tracking-widest uppercase font-semibold">
+              pagamento único • acesso vitalício • entrega imediata
             </span>
           </div>
 
@@ -768,6 +872,20 @@ export default function App() {
       {/* Popups e Notificações de Conversão */}
       <ExitIntentPopup />
       <SocialProof />
+
+      {/* AJUSTE 5 — CTA FLUTUANTE NO MOBILE */}
+      <div 
+        className={`fixed bottom-0 left-0 right-0 z-[9999] md:hidden p-4 transition-all duration-300 ease-out ${
+          showFloatingCta ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
+        }`}
+      >
+        <a 
+          href={KIWIFY_CHECKOUT_URL}
+          className="block w-full text-center bg-[#2E7D52] hover:bg-[#256341] text-white font-bold py-4 rounded-[12px] shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+        >
+          Quero o Guia — R$37
+        </a>
+      </div>
 
     </div>
   );
@@ -1057,40 +1175,11 @@ function FaqAccordion({ question, answer }) {
 // NEW COMPONENTS FOR LP UPDATES
 // ==========================================
 
-// MUDANÇA 4 — CRONÔMETRO DISCRETO
+// AJUSTE 3 — OFERTA ATIVA (SUBSTITUINDO CRONÔMETRO)
 function CountdownTimer() {
-  const [seconds, setSeconds] = useState(587); // 9 minutos e 47 segundos
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((prev) => {
-        if (prev <= 1) {
-          return 587; // Reinicia do zero
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatTime = (totalSeconds) => {
-    const mins = Math.floor(totalSeconds / 60);
-    const secs = totalSeconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const isLowTime = seconds < 120; // abaixo de 2 minutos
-
   return (
-    <div className="text-[11px] text-[#888] font-mono bg-transparent select-none mt-1">
-      ⏱ Oferta expira em{' '}
-      <span 
-        style={{ color: isLowTime ? '#E53935' : '#888' }} 
-        className="transition-colors duration-300 font-bold"
-      >
-        {formatTime(seconds)}
-      </span>
+    <div className="text-[11px] font-mono bg-transparent select-none mt-1 text-[#E53935] font-semibold">
+      🔥 Oferta ativa para as próximas 23 unidades
     </div>
   );
 }
