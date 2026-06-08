@@ -286,13 +286,21 @@ export default function App() {
           </p>
           
           <div className="w-full max-w-[600px] rounded-[12px] overflow-hidden shadow-md">
-            <video 
-              src="https://i.imgur.com/EwdtV0S.mp4"
-              controls
-              className="w-full block"
-              autoPlay={false}
-              muted={false}
-              style={{ width: '100%', maxWidth: '600px', borderRadius: '12px' }}
+            <iframe 
+              width="100%" 
+              style={{ 
+                maxWidth: '600px', 
+                borderRadius: '12px', 
+                boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
+                display: 'block', 
+                margin: '0 auto' 
+              }}
+              height="340"
+              src="https://www.youtube.com/embed/xHAE_tWUnsY?rel=0&modestbranding=1"
+              title="Colesterol alto - entenda o risco"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
             />
           </div>
         </div>
@@ -693,10 +701,10 @@ export default function App() {
           {/* Foto circular */}
           <div className="flex-shrink-0">
             <img 
-              src="https://i.imgur.com/A2TMkGY.jpg" 
+              src="https://i.imgur.com/EwdtV0S.jpg" 
               alt="Ricardo Menezes" 
-              className="w-[120px] h-[120px] rounded-full object-cover shadow-md"
-              style={{ width: '120px', height: '120px', borderRadius: '50%' }}
+              className="w-[140px] h-[140px] md:w-[160px] md:h-[160px] rounded-full object-cover shadow-md border-[3px] border-[#2E7D52]"
+              style={{ borderRadius: '50%' }}
             />
           </div>
           
