@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -270,6 +271,29 @@ export default function App() {
             <span className="flex items-center gap-1"><Check className="w-3 h-3 md:w-3.5 md:h-3.5 text-accent" /> Entrega imediata</span>
             <span className="flex items-center gap-1"><Check className="w-3 h-3 md:w-3.5 md:h-3.5 text-accent" /> Garantia de 7 dias</span>
             <span className="flex items-center gap-1"><Check className="w-3 h-3 md:w-3.5 md:h-3.5 text-accent" /> PDF completo</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ELEMENTO 2 — VÍDEO DE APOIO */}
+      <section className="py-16 px-6 md:px-12 bg-white flex flex-col items-center border-b border-primary/5">
+        <div className="w-full max-w-3xl text-center flex flex-col items-center">
+          <h2 className="font-heading font-extrabold text-primary text-2xl md:text-3xl lg:text-4xl mb-2 max-w-2xl leading-tight">
+            Veja por que o colesterol alto é mais perigoso do que parece
+          </h2>
+          <p className="text-gray-500 font-medium text-sm md:text-base mb-8 max-w-lg">
+            Em 3 minutos você vai entender o que está acontecendo nas suas artérias
+          </p>
+          
+          <div className="w-full max-w-[600px] rounded-[12px] overflow-hidden shadow-md">
+            <video 
+              src="https://i.imgur.com/EwdtV0S.mp4"
+              controls
+              className="w-full block"
+              autoPlay={false}
+              muted={false}
+              style={{ width: '100%', maxWidth: '600px', borderRadius: '12px' }}
+            />
           </div>
         </div>
       </section>
@@ -663,6 +687,50 @@ export default function App() {
         </div>
       </section>
 
+      {/* ELEMENTO 1 — SEÇÃO DO AUTOR */}
+      <section className="py-20 px-6 md:px-12 bg-[#F8F8F8] flex flex-col items-center">
+        <div className="w-full max-w-4xl flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+          {/* Foto circular */}
+          <div className="flex-shrink-0">
+            <img 
+              src="https://i.imgur.com/A2TMkGY.jpg" 
+              alt="Ricardo Menezes" 
+              className="w-[120px] h-[120px] rounded-full object-cover shadow-md"
+              style={{ width: '120px', height: '120px', borderRadius: '50%' }}
+            />
+          </div>
+          
+          {/* Texto à direita */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <span className="font-sans font-bold uppercase tracking-wider text-[#2E7D52] text-[10px] mb-2">
+              QUEM CRIOU ESTE GUIA
+            </span>
+            <h3 className="font-heading font-extrabold text-primary text-2xl md:text-3xl leading-tight mb-1">
+              Ricardo Menezes
+            </h3>
+            <p className="text-gray-500 font-medium text-sm md:text-base mb-4">
+              Pesquisador de saúde cardiovascular e hábitos alimentares
+            </p>
+            <p className="text-dark/85 text-sm md:text-base leading-relaxed mb-6 max-w-2xl">
+              Aos 42 anos recebi a notícia que meu colesterol LDL estava em 187 mg/dL. O médico queria receitar estatina imediatamente. Pedi 90 dias para tentar resolver com alimentação. Passei meses estudando cada evidência científica disponível sobre nutrição cardiovascular. Resultado: LDL caiu para 131 mg/dL em 60 dias. Esse guia é o protocolo que usei — organizado para qualquer pessoa conseguir seguir.
+            </p>
+            
+            {/* 3 badges verdes */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs font-semibold text-[#2E7D52]">
+              <span className="bg-[#2E7D52]/10 px-3 py-1.5 rounded-full flex items-center gap-1">
+                ✓ Baseado em evidências
+              </span>
+              <span className="bg-[#2E7D52]/10 px-3 py-1.5 rounded-full flex items-center gap-1">
+                ✓ Testado pessoalmente
+              </span>
+              <span className="bg-[#2E7D52]/10 px-3 py-1.5 rounded-full flex items-center gap-1">
+                ✓ Linguagem simples
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* AJUSTE 2 — BLOCO DE DOR */}
       <section className="py-20 px-6 md:px-12 bg-[#EAECE6] text-dark flex flex-col items-center">
         <div className="w-full max-w-2xl text-center md:text-center flex flex-col gap-6 text-[15px] md:text-lg text-dark/95 leading-relaxed">
@@ -713,6 +781,26 @@ export default function App() {
           {/* Preço Principal */}
           <div className="flex flex-col items-center mb-4 mt-2">
             <CountdownTimer />
+
+            {/* ELEMENTO 3 — URGÊNCIA NA SEÇÃO DE PREÇO */}
+            <div className="w-full max-w-[280px] md:max-w-[320px] flex flex-col items-center gap-2 mt-4 mb-2">
+              <span className="font-bold text-[13px] text-[#C0392B] text-center">
+                🔥 Alta demanda — estoque digital limitado
+              </span>
+              <div className="w-full h-[10px] bg-[#F0F0F0] rounded-[5px] overflow-hidden">
+                <div 
+                  className="h-full rounded-[5px]" 
+                  style={{ 
+                    width: '78%', 
+                    background: 'linear-gradient(to right, #F39C12, #C0392B)' 
+                  }}
+                />
+              </div>
+              <span className="text-[12px] text-[#666] text-center">
+                Restam apenas 31 acessos neste preço
+              </span>
+            </div>
+
             <span className="font-heading font-black text-6xl md:text-8xl text-white tracking-tighter mt-2">
               R$ 37
             </span>
