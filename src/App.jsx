@@ -17,6 +17,17 @@ const KIWIFY_CHECKOUT_URL = "https://pay.kiwify.com.br/GSu7b92";
 // Link de checkout com desconto para o Popup de Exit Intent
 const KIWIFY_DISCOUNT_URL = "https://pay.kiwify.com.br/Lvzjpip"; // Substitua pelo link direto do checkout de R$27
 
+const StarRating = () => (
+  <div style={{ display: 'flex', gap: '2px' }}>
+    {[...Array(5)].map((_, i) => (
+      <svg key={i} width="16" height="16" viewBox="0 0 24 24" 
+           fill="#F59E0B" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    ))}
+  </div>
+);
+
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -498,7 +509,7 @@ export default function App() {
                   Elimine os vilões
                 </h2>
                 <p className="text-white/80 leading-relaxed text-base md:text-lg">
-                  Nas primeiras 7 dias você identifica e substitui os 3 principais alimentos que estão sabotando seus exames. Sem dieta radical — apenas trocas cirúrgicas.
+                  Nos primeiros 7 dias você identifica e substitui os 3 principais alimentos que estão sabotando seus exames. Sem dieta radical — apenas trocas cirúrgicas.
                 </p>
                 <div className="flex items-center gap-2 text-xs font-mono text-white/40">
                   <span>STATUS: SCAN_COMPLETE</span>
@@ -643,7 +654,7 @@ export default function App() {
             <div className="relative bg-white p-6 rounded-[12px] border border-primary/10 shadow-sm flex flex-col justify-between gap-4">
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <div className="text-amber-500 text-sm">⭐⭐⭐⭐⭐</div>
+                  <StarRating />
                   <span className="bg-emerald-500/10 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
                     Compra verificada
                   </span>
@@ -661,7 +672,7 @@ export default function App() {
             <div className="relative bg-white p-6 rounded-[12px] border border-primary/10 shadow-sm flex flex-col justify-between gap-4">
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <div className="text-amber-500 text-sm">⭐⭐⭐⭐⭐</div>
+                  <StarRating />
                   <span className="bg-emerald-500/10 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
                     Compra verificada
                   </span>
@@ -679,7 +690,7 @@ export default function App() {
             <div className="relative bg-white p-6 rounded-[12px] border border-primary/10 shadow-sm flex flex-col justify-between gap-4">
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <div className="text-amber-500 text-sm">⭐⭐⭐⭐⭐</div>
+                  <StarRating />
                   <span className="bg-emerald-500/10 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
                     Compra verificada
                   </span>
@@ -805,11 +816,17 @@ export default function App() {
                   }}
                 />
               </div>
-              <span className="text-[12px] text-[#666] text-center">
-                Restam apenas 31 acessos neste preço
-              </span>
             </div>
 
+            <p style={{ 
+              textDecoration: 'line-through', 
+              color: '#999', 
+              fontSize: '18px',
+              marginBottom: '4px',
+              textAlign: 'center'
+            }}>
+              De R$47
+            </p>
             <span className="font-heading font-black text-6xl md:text-8xl text-white tracking-tighter mt-2">
               R$ 37
             </span>
@@ -1276,7 +1293,7 @@ function FaqAccordion({ question, answer }) {
 function CountdownTimer() {
   return (
     <div className="text-[11px] font-mono bg-transparent select-none mt-1 text-[#E53935] font-semibold">
-      🔥 Oferta ativa para as próximas 23 unidades
+      🔥 Oferta ativa para as próximas 31 acessos
     </div>
   );
 }
@@ -1285,6 +1302,17 @@ function CountdownTimer() {
 function ExitIntentPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [animate, setAnimate] = useState(false);
+  const [time, setTime] = useState(600);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(t => t <= 0 ? 600 : t - 1)
+    }, 1000)
+    return () => clearInterval(timer)
+  }, []);
+
+  const mins = String(Math.floor(time/60)).padStart(2,'0');
+  const secs = String(time % 60).padStart(2,'0');
 
   useEffect(() => {
     // Só ativa após 5 segundos de página
@@ -1360,6 +1388,17 @@ function ExitIntentPopup() {
           Essa oferta expira quando você fechar esta página.
         </p>
 
+        {/* Cronômetro */}
+        <div style={{ 
+          fontSize: '22px', 
+          color: '#E53935', 
+          fontWeight: 800, 
+          textAlign: 'center',
+          marginBottom: '24px'
+        }}>
+          ⏱ Oferta expira em: {mins}:{secs}
+        </div>
+
         {/* Bloco de preço */}
         <div className="flex flex-col items-center bg-[#F2F0E9]/40 border border-primary/5 rounded-2xl p-4 w-full mb-6">
           <span className="text-[12px] text-dark/40 line-through font-mono leading-none mb-1">
@@ -1377,7 +1416,7 @@ function ExitIntentPopup() {
         <div className="flex flex-col gap-3 w-full text-left mb-6 font-semibold text-xs md:text-sm text-dark/80">
           <div className="flex items-center gap-2.5">
             <Check className="w-4 h-4 text-[#2E7D52] flex-shrink-0" />
-            <span>PDF completo com 12 capítulos</span>
+            <span>PDF completo com 8 capítulos</span>
           </div>
           <div className="flex items-center gap-2.5">
             <Check className="w-4 h-4 text-[#2E7D52] flex-shrink-0" />
@@ -1407,7 +1446,7 @@ function ExitIntentPopup() {
           onClick={handleClose}
           className="text-[11px] text-dark/40 hover:text-dark/70 transition-colors font-medium underline"
         >
-          Não, prefiro pagar R$47 mais tarde
+          Não, prefiro pagar R$37 mais tarde
         </button>
       </div>
     </div>
