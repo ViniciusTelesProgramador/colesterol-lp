@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import autorImg from './assets/autor.jpg';
 import { 
   Shield, Check, ChevronDown, MessageSquare, ArrowRight, Activity, 
   Menu, X, BookOpen, AlertCircle, Heart, Star, Sparkles, Droplet,
@@ -701,7 +702,7 @@ export default function App() {
           {/* Foto circular */}
           <div className="flex-shrink-0">
             <img 
-              src="https://i.imgur.com/EwdtV0S.jpg" 
+              src={autorImg} 
               alt="Ricardo Menezes" 
               className="w-[140px] h-[140px] md:w-[160px] md:h-[160px] rounded-full object-cover shadow-md border-[3px] border-[#2E7D52]"
               style={{ borderRadius: '50%' }}
