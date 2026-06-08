@@ -663,8 +663,20 @@ export default function App() {
                   "Fiz os exames 30 dias depois de começar o protocolo. Meu LDL caiu de 178 para 142. Minha médica ficou surpresa e perguntou o que eu tinha feito diferente."
                 </p>
               </div>
-              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3">
-                Rosana M. — Fortaleza, CE
+              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3 flex items-center gap-3">
+                <div 
+                  className="flex items-center justify-center text-white font-bold flex-shrink-0"
+                  style={{ 
+                    width: '40px', 
+                    height: '40px', 
+                    borderRadius: '50%', 
+                    backgroundColor: '#2E7D52', 
+                    fontSize: '13px' 
+                  }}
+                >
+                  RM
+                </div>
+                <span>Rosana M. — Fortaleza, CE</span>
               </div>
             </div>
 
@@ -681,8 +693,20 @@ export default function App() {
                   "Tentei várias dietas antes e nunca consegui seguir. Esse guia é diferente porque é prático — tem o cardápio pronto, a lista de compras, tudo mastigado. Recomendo muito."
                 </p>
               </div>
-              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3">
-                Carlos A. — São Paulo, SP
+              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3 flex items-center gap-3">
+                <div 
+                  className="flex items-center justify-center text-white font-bold flex-shrink-0"
+                  style={{ 
+                    width: '40px', 
+                    height: '40px', 
+                    borderRadius: '50%', 
+                    backgroundColor: '#2E7D52', 
+                    fontSize: '13px' 
+                  }}
+                >
+                  CA
+                </div>
+                <span>Carlos A. — São Paulo, SP</span>
               </div>
             </div>
 
@@ -699,8 +723,20 @@ export default function App() {
                   "Comprei com o pé atrás por ser só R$37. Mas o conteúdo é sério, muito bem explicado. Já indiquei para minha mãe e minha tia que também têm colesterol alto."
                 </p>
               </div>
-              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3">
-                Fernanda L. — Belo Horizonte, MG
+              <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3 flex items-center gap-3">
+                <div 
+                  className="flex items-center justify-center text-white font-bold flex-shrink-0"
+                  style={{ 
+                    width: '40px', 
+                    height: '40px', 
+                    borderRadius: '50%', 
+                    backgroundColor: '#2E7D52', 
+                    fontSize: '13px' 
+                  }}
+                >
+                  FL
+                </div>
+                <span>Fernanda L. — Belo Horizonte, MG</span>
               </div>
             </div>
           </div>
@@ -748,6 +784,17 @@ export default function App() {
               </span>
             </div>
           </div>
+        </div>
+
+        {/* Botão CTA centralizado */}
+        <div className="flex justify-center mt-6">
+          <a 
+            href={KIWIFY_CHECKOUT_URL}
+            className="btn-premium bg-accent hover:bg-accentHover text-white text-xs md:text-base px-6 md:px-8 py-3.5 md:py-4 rounded-full font-bold shadow-lg hover:scale-103 transition-transform text-center"
+            style={{ marginTop: '24px' }}
+          >
+            QUERO APLICAR ESSE PROTOCOLO — R$37
+          </a>
         </div>
       </section>
 
