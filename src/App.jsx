@@ -242,7 +242,7 @@ export default function App() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=1974')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1974')",
           }}
         />
         
@@ -263,7 +263,7 @@ export default function App() {
           </div>
           <div className="overflow-hidden">
             <p className="hero-anim block text-white/80 font-sans text-sm md:text-xl max-w-xl">
-              O protocolo de 21 dias<br className="md:hidden" /> comprovado pela ciência.
+              Descubra o que ninguém te contou sobre alimentação e colesterol — em linguagem simples, sem complicação.
             </p>
           </div>
           
@@ -326,6 +326,10 @@ export default function App() {
               Você se identifica com alguma dessas situações?
             </h2>
           </div>
+
+          <p className="italic text-gray-500 text-[14px] text-center mb-[20px]">
+            Se você é como a maioria das mulheres que nos escrevem, provavelmente se identifica com pelo menos uma dessas situações:
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {/* Card 1 */}
@@ -509,10 +513,10 @@ export default function App() {
                   Elimine os vilões
                 </h2>
                 <p className="text-white/80 leading-relaxed text-base md:text-lg">
-                  Nos primeiros 7 dias você identifica e substitui os 3 principais alimentos que estão sabotando seus exames. Sem dieta radical — apenas trocas cirúrgicas.
+                  Você vai identificar os 3 alimentos que estão sabotando seus exames sem você perceber — e vai trocá-los por opções que você já tem em casa.
                 </p>
                 <div className="flex items-center gap-2 text-xs font-mono text-white/40">
-                  <span>STATUS: SCAN_COMPLETE</span>
+                  <span>Fase de identificação</span>
                   <span className="w-1.5 h-1.5 bg-accent rounded-full animate-ping"></span>
                 </div>
               </div>
@@ -538,10 +542,10 @@ export default function App() {
                   Ative os superalimentos
                 </h2>
                 <p className="text-white/80 leading-relaxed text-base md:text-lg">
-                  Da semana 2 em diante, você inclui ativamente os 8 alimentos com ação comprovada de redução do LDL. Seu corpo começa a responder de forma cirúrgica.
+                  Pequenas adições no cardápio do dia a dia que fazem seu fígado processar o colesterol de forma muito mais eficiente.
                 </p>
                 <div className="flex items-center gap-2 text-xs font-mono text-white/40">
-                  <span>STATUS: INJECTING_NUTRIENTS</span>
+                  <span>Fase de ativação</span>
                   <span className="w-1.5 h-1.5 bg-accent rounded-full animate-ping"></span>
                 </div>
               </div>
@@ -558,7 +562,7 @@ export default function App() {
                     <line x1="0" y1="0" x2="100" y2="0" stroke="#CC5833" strokeWidth="1.5" className="animate-laser-scan" />
                   </svg>
                   <div className="absolute font-mono text-[9px] text-[#CC5833] bottom-4 left-4 tracking-widest uppercase">
-                    SYS_SCANNING: 88.4%
+                    Alimentação estratégica
                   </div>
                 </div>
               </div>
@@ -574,10 +578,10 @@ export default function App() {
                   Consolide o hábito
                 </h2>
                 <p className="text-white/80 leading-relaxed text-base md:text-lg">
-                  Na semana 3 os novos padrões se fixam. Pesquisas mostram que 21 dias de consistência tornam o comportamento automático — sem esforço.
+                  Depois de 21 dias, as novas escolhas alimentares já fazem parte da sua rotina — sem esforço, sem sofrimento.
                 </p>
                 <div className="flex items-center gap-2 text-xs font-mono text-white/40">
-                  <span>STATUS: INTEGRATION_LOCKED</span>
+                  <span>Fase de consolidação</span>
                   <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span>
                 </div>
               </div>
@@ -596,7 +600,7 @@ export default function App() {
                     />
                   </svg>
                   <div className="absolute font-mono text-[9px] text-[#CC5833] bottom-4 left-4 tracking-widest uppercase">
-                    SYS_VITALITY: ACCENT_STABILIZED
+                    Saúde protegida
                   </div>
                 </div>
               </div>
@@ -690,7 +694,7 @@ export default function App() {
                   </span>
                 </div>
                 <p className="text-dark/80 italic text-sm md:text-base leading-relaxed">
-                  "Tentei várias dietas antes e nunca consegui seguir. Esse guia é diferente porque é prático — tem o cardápio pronto, a lista de compras, tudo mastigado. Recomendo muito."
+                  "Meu médico sempre dizia que eu precisava de remédio. Resolvi tentar 30 dias só com alimentação seguindo esse guia. No retorno, meu LDL tinha caído de 165 para 138. Ele ficou surpreso. Eu não fiquei."
                 </p>
               </div>
               <div className="font-sans text-xs md:text-sm text-dark font-bold border-t border-primary/5 pt-3 flex items-center gap-3">
@@ -704,9 +708,9 @@ export default function App() {
                     fontSize: '13px' 
                   }}
                 >
-                  CA
+                  AM
                 </div>
-                <span>Carlos A. — São Paulo, SP</span>
+                <span>Ana Paula M. — Goiânia, GO</span>
               </div>
             </div>
 
@@ -767,8 +771,11 @@ export default function App() {
             <p className="text-gray-500 font-medium text-sm md:text-base mb-4">
               Pesquisador de saúde cardiovascular e hábitos alimentares
             </p>
-            <p className="text-dark/85 text-sm md:text-base leading-relaxed mb-6 max-w-2xl">
+            <p className="text-dark/85 text-sm md:text-base leading-relaxed mb-4 max-w-2xl">
               Aos 42 anos recebi a notícia que meu colesterol LDL estava em 187 mg/dL. O médico queria receitar estatina imediatamente. Pedi 90 dias para tentar resolver com alimentação. Passei meses estudando cada evidência científica disponível sobre nutrição cardiovascular. Resultado: LDL caiu para 131 mg/dL em 60 dias. Esse guia é o protocolo que usei — organizado para qualquer pessoa conseguir seguir.
+            </p>
+            <p className="italic text-[#2E7D52] text-[13px] mb-6 text-center md:text-left font-medium">
+              Hoje mais de 800 pessoas — a maioria mulheres entre 40 e 65 anos — já usaram esse protocolo para transformar seus exames.
             </p>
             
             {/* 3 badges verdes */}
@@ -887,7 +894,7 @@ export default function App() {
             href={KIWIFY_CHECKOUT_URL}
             className="w-full btn-premium bg-accent hover:bg-accentHover text-white py-5 text-lg rounded-full font-bold shadow-xl hover:scale-103 transition-transform"
           >
-            QUERO MEU GUIA AGORA — <span className="line-through opacity-70 mr-1.5">R$47</span> R$37
+            QUERO COMEÇAR HOJE — R$37
           </a>
 
           <p className="text-[10px] text-white/50 -mt-2">
@@ -1044,7 +1051,7 @@ export default function App() {
           href={KIWIFY_CHECKOUT_URL}
           className="block w-full text-center bg-[#2E7D52] hover:bg-[#256341] text-white font-bold py-4 rounded-[12px] shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
         >
-          Quero o Guia — R$37
+          Quero Começar — R$37
         </a>
       </div>
 
@@ -1146,10 +1153,11 @@ function DiagnosticShuffler() {
 // Card 2 — "Telemetry Typewriter"
 function TelemetryTypewriter() {
   const messages = [
-    "LDL reduzido em 10% com betaglucana...",
-    "HDL aumentado com gorduras monoinsaturadas...",
-    "Triglicerídeos -25% com ômega-3 em 4 semanas...",
-    "Fibra solúvel: sequestra colesterol no intestino..."
+    "Aveia no café da manhã reduziu LDL em 8% em 4 semanas...",
+    "Mulheres de 45 a 60 anos são as que mais respondem ao protocolo alimentar...",
+    "Azeite extra virgem protege as artérias da oxidação...",
+    "21 dias de consistência criam novos hábitos automáticos...",
+    "Feijão e lentilha: as fibras que sequestram o colesterol..."
   ];
   
   const [currentMsgIdx, setCurrentMsgIdx] = useState(0);
