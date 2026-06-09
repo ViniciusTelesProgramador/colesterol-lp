@@ -6,7 +6,7 @@ import autorImg from './assets/autor.jpg';
 import { 
   Shield, Check, ChevronDown, MessageSquare, ArrowRight, Activity, 
   Menu, X, BookOpen, AlertCircle, Heart, Star, Sparkles, Droplet,
-  CheckCircle, UserCheck
+  CheckCircle, UserCheck, Utensils
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -242,7 +242,7 @@ export default function App() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1974')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1574482620826-40685ca5ebd2?q=80&w=1974')",
           }}
         />
         
@@ -252,18 +252,23 @@ export default function App() {
         {/* Content Container (Bottom-left aligned) */}
         <div className="relative z-10 w-full max-w-5xl px-6 md:px-12 pb-8 pt-24 md:pb-24 flex flex-col items-center md:items-start gap-2.5 md:gap-4 text-center md:text-left">
           <div className="overflow-hidden">
-            <span className="hero-anim block font-heading font-extrabold text-white text-xl md:text-5xl uppercase tracking-wider">
-              Colesterol alto é
+            <span className="hero-anim block font-heading font-extrabold text-emerald-400 text-lg md:text-3xl uppercase tracking-wider">
+              Finalmente descobri
             </span>
           </div>
-          <div className="overflow-hidden leading-none -mt-1 md:-mt-2">
-            <h1 className="hero-anim block font-drama italic text-accent text-5xl md:text-9xl lg:text-[10rem] font-bold">
-              Reversível.
+          <div className="overflow-hidden leading-tight">
+            <h1 className="hero-anim block font-heading font-extrabold text-white text-4xl md:text-7xl lg:text-8xl">
+              Por que meu colesterol
             </h1>
+          </div>
+          <div className="overflow-hidden leading-none -mt-1 md:-mt-2">
+            <span className="hero-anim block font-drama italic text-accent text-5xl md:text-9xl lg:text-[10rem] font-bold">
+              não baixava.
+            </span>
           </div>
           <div className="overflow-hidden">
             <p className="hero-anim block text-white/80 font-sans text-sm md:text-xl max-w-xl">
-              Descubra o que ninguém te contou sobre alimentação e colesterol — em linguagem simples, sem complicação.
+              Não era falta de força de vontade. Era falta de informação. Esse guia me mostrou exatamente o que comer, o que evitar e como fazer isso na prática — sem sofrimento.
             </p>
           </div>
           
@@ -275,7 +280,7 @@ export default function App() {
               QUERO MEU GUIA AGORA — <span className="line-through opacity-70 mr-1.5">R$47</span> R$37
             </a>
             <span className="text-[10px] md:text-xs text-white/60 text-center w-full md:text-left mt-1 block">
-              ⭐⭐⭐⭐⭐ &nbsp;+847 pessoas já transformaram seus exames
+              ⭐⭐⭐⭐⭐ &nbsp;+847 mulheres já transformaram seus exames — muitas depois de anos tentando
             </span>
           </div>
 
@@ -323,49 +328,58 @@ export default function App() {
         <div className="w-full max-w-4xl">
           <div className="text-center mb-16">
             <h2 className="font-heading font-extrabold text-primary text-3xl md:text-5xl tracking-tight leading-tight">
-              Você se identifica com alguma dessas situações?
+              Eu sei exatamente como você está se sentindo.
             </h2>
           </div>
 
-          <p className="italic text-gray-500 text-[14px] text-center mb-[20px]">
-            Se você é como a maioria das mulheres que nos escrevem, provavelmente se identifica com pelo menos uma dessas situações:
+          <p className="text-gray-600 text-sm md:text-base text-center max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
+            Você fez o exame. O médico disse que o colesterol está alto. Ele receitou (ou ameaçou receitar) remédio. Você saiu da consulta com mais dúvidas do que respostas sobre o que realmente fazer.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {/* Card 1 */}
             <div className="problem-card bg-white p-8 rounded-3xl border border-primary/5 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-4">
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                <AlertCircle className="w-6 h-6 text-accent" />
+                <Heart className="w-6 h-6 text-accent" />
               </div>
-              <p className="text-dark font-medium leading-relaxed">
-                "Seus exames voltaram com colesterol alto — e o médico só falou em remédio."
+              <h3 className="font-heading font-bold text-lg text-primary">
+                O médico quer receitar estatina
+              </h3>
+              <p className="text-dark/80 font-medium text-sm leading-relaxed">
+                Mas você quer tentar resolver com alimentação antes de depender de remédio para o resto da vida.
               </p>
             </div>
 
             {/* Card 2 */}
             <div className="problem-card bg-white p-8 rounded-3xl border border-primary/5 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-4">
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                <BookOpen className="w-6 h-6 text-accent" />
+                <Utensils className="w-6 h-6 text-accent" />
               </div>
-              <p className="text-dark font-medium leading-relaxed">
-                "Você já tentou mudar a alimentação, mas não sabe exatamente o que cortar ou incluir."
+              <h3 className="font-heading font-bold text-lg text-primary">
+                Você já tentou mudar a dieta
+              </h3>
+              <p className="text-dark/80 font-medium text-sm leading-relaxed">
+                Cortou gordura, tentou comer melhor — mas sem um plano claro, os exames continuaram iguais.
               </p>
             </div>
 
             {/* Card 3 */}
             <div className="problem-card bg-white p-8 rounded-3xl border border-primary/5 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-4">
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                <Heart className="w-6 h-6 text-accent" />
+                <Activity className="w-6 h-6 text-accent" />
               </div>
-              <p className="text-dark font-medium leading-relaxed">
-                "Tem medo das consequências: infarto, AVC, problemas no coração."
+              <h3 className="font-heading font-bold text-lg text-primary">
+                O medo não passa
+              </h3>
+              <p className="text-dark/80 font-medium text-sm leading-relaxed">
+                Infarto, AVC, problemas no coração. Você sabe que o risco é real e precisa fazer algo agora.
               </p>
             </div>
           </div>
 
           <div className="text-center">
-            <p className="font-heading font-semibold text-lg md:text-xl text-primary max-w-2xl mx-auto leading-relaxed">
-              Se você marcou ao menos uma dessas situações, o <span className="underline decoration-accent decoration-2">Guia Alimentar de 21 Dias</span> foi feito para você.
+            <p className="font-bold text-center text-[#2E7D52] text-[15px] mt-[20px]">
+              Se você se identificou com qualquer uma dessas situações — este guia foi escrito para você.
             </p>
           </div>
         </div>
@@ -466,7 +480,7 @@ export default function App() {
         <div className="relative z-10 w-full max-w-4xl text-center flex flex-col gap-8 md:gap-12">
           <div>
             <p className="text-white/50 text-sm md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
-              {"A maioria das dietas foca em: restrição total, sofrimento e resultados impossíveis.".split(" ").map((word, i) => (
+              {"A maioria das mulheres que chegam até nós tentaram de tudo: cortaram gordura, tomaram chá, seguiram dieta — e o colesterol continuou alto.".split(" ").map((word, i) => (
                 <span key={i} className="philosophy-word inline-block mr-1">
                   {word}
                 </span>
@@ -478,19 +492,19 @@ export default function App() {
 
           <div>
             <h2 className="font-drama italic text-3xl md:text-6xl lg:text-7xl font-bold leading-tight max-w-3xl mx-auto">
-              {"Nós focamos em: ".split(" ").map((word, i) => (
+              {"O problema nunca foi você. Foi nunca ter tido um plano ".split(" ").map((word, i) => (
                 <span key={i} className="philosophy-word inline-block mr-2 text-white/90">
                   {word}
                 </span>
               ))}
               <span className="text-accent underline decoration-accent/30 decoration-4 block md:inline font-extrabold">
-                {"substituições inteligentes ".split(" ").map((word, i) => (
+                {"específico ".split(" ").map((word, i) => (
                   <span key={i} className="philosophy-word inline-block mr-2">
                     {word}
                   </span>
                 ))}
               </span>
-              {"e resultados mensuráveis.".split(" ").map((word, i) => (
+              {"para o seu colesterol.".split(" ").map((word, i) => (
                 <span key={i} className="philosophy-word inline-block mr-2 text-white/90">
                   {word}
                 </span>
@@ -513,7 +527,7 @@ export default function App() {
                   Elimine os vilões
                 </h2>
                 <p className="text-white/80 leading-relaxed text-base md:text-lg">
-                  Você vai identificar os 3 alimentos que estão sabotando seus exames sem você perceber — e vai trocá-los por opções que você já tem em casa.
+                  Nos primeiros 7 dias você vai identificar os 3 alimentos que provavelmente estão sabotando seus exames — e que você come achando que são saudáveis. Só isso já faz diferença.
                 </p>
                 <div className="flex items-center gap-2 text-xs font-mono text-white/40">
                   <span>Fase de identificação</span>
@@ -542,7 +556,7 @@ export default function App() {
                   Ative os superalimentos
                 </h2>
                 <p className="text-white/80 leading-relaxed text-base md:text-lg">
-                  Pequenas adições no cardápio do dia a dia que fazem seu fígado processar o colesterol de forma muito mais eficiente.
+                  Da semana 2 em diante você vai incluir alimentos simples que compra em qualquer mercado e que a ciência comprova reduzirem o LDL. Sem suplemento caro. Sem receita difícil.
                 </p>
                 <div className="flex items-center gap-2 text-xs font-mono text-white/40">
                   <span>Fase de ativação</span>
@@ -578,7 +592,7 @@ export default function App() {
                   Consolide o hábito
                 </h2>
                 <p className="text-white/80 leading-relaxed text-base md:text-lg">
-                  Depois de 21 dias, as novas escolhas alimentares já fazem parte da sua rotina — sem esforço, sem sofrimento.
+                  Na semana 3 o novo cardápio já faz parte da sua rotina. Você agenda o exame de retorno e vai com confiança — sabendo que fez algo real pelos seus próximos 20 anos.
                 </p>
                 <div className="flex items-center gap-2 text-xs font-mono text-white/40">
                   <span>Fase de consolidação</span>
@@ -616,22 +630,22 @@ export default function App() {
           <div className="text-center mb-16">
             <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">// O Guia Completo</span>
             <h2 className="font-heading font-extrabold text-primary text-3xl md:text-5xl mt-2 tracking-tight">
-              Tudo que está incluído no guia
+              O que você vai ter nas mãos hoje
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-8 md:p-12 rounded-[3rem] border border-primary/5 shadow-sm">
             {[
-              "8 capítulos completos sobre colesterol e alimentação",
-              "Tabela LDL/HDL/Triglicerídeos com metas por faixa etária",
-              "Os 7 alimentos que você deve eliminar (com substitutos práticos)",
-              "Os 8 superalimentos que reduzem o LDL ativamente",
-              "Guia completo de fibras com tabela de porções",
-              "Protocolo semanal de 21 dias passo a passo",
-              "Cardápio semanal completo (café, almoço, lanche e jantar)",
-              "Estratégias de sono e gestão de estresse",
-              "Linguagem simples — sem termos médicos complicados",
-              "PDF para baixar e consultar quando quiser"
+              "O que realmente eleva o colesterol (não é o que você pensa)",
+              "Os 7 alimentos que parecem saudáveis mas estão sabotando seus exames",
+              "Os 12 alimentos que reduzem o LDL — com a quantidade exata de cada um",
+              "O cardápio completo dos 21 dias — café, almoço, lanche e jantar prontos",
+              "A lista de compras da semana 1 — você já começa no próximo mercado",
+              "Por que o estresse aumenta o colesterol (e o que fazer em 5 minutos por dia)",
+              "Como interpretar seus próprios exames — sem precisar de médico para explicar",
+              "O plano de monitoramento — como saber se está funcionando antes do próximo exame",
+              "Linguagem simples — zero termos médicos complicados, zero dieta impossível",
+              "PDF no celular — consulte quando precisar, para sempre, sem mensalidade"
             ].map((item, index) => (
               <div key={index} className="flex items-start gap-4">
                 <div className="w-6 h-6 bg-[#2E4036]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -708,7 +722,7 @@ export default function App() {
                     fontSize: '13px' 
                   }}
                 >
-                  AM
+                  AP
                 </div>
                 <span>Ana Paula M. — Goiânia, GO</span>
               </div>
@@ -744,6 +758,10 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          <p className="italic text-gray-500 text-center text-[12px] max-w-[480px] mx-auto mt-12 leading-relaxed">
+            A maioria das nossas leitoras tem entre 40 e 65 anos e chegou aqui depois de anos ouvindo que precisava de remédio. O guia não promete milagre — promete um plano claro para quem está disposta a tentar.
+          </p>
         </div>
       </section>
 
@@ -777,6 +795,15 @@ export default function App() {
             <p className="italic text-[#2E7D52] text-[13px] mb-6 text-center md:text-left font-medium">
               Hoje mais de 800 pessoas — a maioria mulheres entre 40 e 65 anos — já usaram esse protocolo para transformar seus exames.
             </p>
+
+            <div className="flex justify-center md:justify-start w-full mt-2 mb-6">
+              <a 
+                href="https://pay.kiwify.com.br/GSu7b92"
+                className="btn-premium bg-accent hover:bg-accentHover text-white text-xs md:text-base px-6 md:px-8 py-3.5 md:py-4 rounded-full font-bold shadow-lg hover:scale-103 transition-transform text-center"
+              >
+                QUERO ESSE PROTOCOLO AGORA — R$37
+              </a>
+            </div>
             
             {/* 3 badges verdes */}
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs font-semibold text-[#2E7D52]">
@@ -828,10 +855,10 @@ export default function App() {
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-80" />
         
         <div className="w-full max-w-xl text-center flex flex-col items-center gap-6 relative z-10">
-          <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">OFERTA DE LANÇAMENTO</span>
+          <span className="font-mono text-xs text-accent uppercase tracking-wider font-semibold">ACESSO IMEDIATO</span>
           
           <h2 className="font-heading font-extrabold text-3xl md:text-5xl tracking-tight leading-tight">
-            Comece a cuidar da sua saúde hoje
+            Tudo isso por menos do que uma consulta
           </h2>
           
           <p className="text-white/70 max-w-md mx-auto text-sm md:text-base leading-relaxed">
@@ -840,8 +867,9 @@ export default function App() {
 
           {/* Preços Ancorados */}
           <div className="flex flex-col gap-2 items-center justify-center font-mono text-sm text-white/50">
-            <span className="line-through">Consulta nutricional: R$250</span>
-            <span className="line-through">Suplementos por 30 dias: R$180</span>
+            <span className="line-through">Uma consulta com nutricionista: R$250</span>
+            <span className="line-through">Um mês de ômega-3 + fibras: R$190</span>
+            <span className="line-through">Um exame de lipidograma particular: R$120</span>
           </div>
 
           {/* Separador visual */}
@@ -849,7 +877,7 @@ export default function App() {
 
           {/* Texto de transição */}
           <span className="text-white/80 font-heading text-sm md:text-base uppercase tracking-wider font-semibold">
-            Seu investimento hoje:
+            Ou você pode ter o protocolo completo que substitui tudo isso:
           </span>
 
           {/* Preço Principal */}
@@ -888,6 +916,10 @@ export default function App() {
               pagamento único • acesso vitalício • entrega imediata
             </span>
           </div>
+
+          <p className="italic text-white/60 text-center text-[13px] -mt-2 mb-2">
+            Menos do que você gasta in um jantar fora.
+          </p>
 
           {/* CTA Grande */}
           <a 
@@ -970,8 +1002,8 @@ export default function App() {
 
           <div className="flex flex-col gap-4">
             <FaqAccordion 
-              question="Este guia substitui o acompanhamento médico?"
-              answer="Não. O guia é educativo e complementar. Sempre mantenha o acompanhamento com seu médico. As orientações aqui são baseadas em evidências e ajudam você a fazer escolhas alimentares mais inteligentes."
+              question="Este guia substitui o médico?"
+              answer="Não — e seria irresponsável se prometesse isso. O guia é educativo: ele te explica o que a ciência sabe sobre alimentação e colesterol, em linguagem que você entende. O acompanhamento médico continua sendo fundamental. A diferença é que agora você vai chegar na consulta sabendo o que perguntar e o que já está fazendo."
             />
             <FaqAccordion 
               question="Funciona para qualquer tipo de colesterol alto?"
@@ -979,7 +1011,7 @@ export default function App() {
             />
             <FaqAccordion 
               question="Como vou receber o guia?"
-              answer="Imediatamente após a confirmação do pagamento, você recebe o PDF no e-mail cadastrado no checkout. O acesso é vitalício."
+              answer="Assim que o pagamento for confirmado — normalmente em menos de 1 minuto — você recebe um e-mail com o link para baixar o PDF. Ele abre em qualquer celular, tablet ou computador. Sem aplicativo, sem login, sem complicação."
             />
             <FaqAccordion 
               question="Preciso ter conhecimento de nutrição?"
@@ -1437,10 +1469,10 @@ function ExitIntentPopup() {
 
         {/* Títulos */}
         <h3 className="font-heading font-black text-2xl md:text-3xl text-dark leading-tight mb-2">
-          Não vá embora sem o seu desconto
+          Antes de ir — uma última coisa
         </h3>
         <p className="text-dark/60 text-xs md:text-sm mb-6 leading-relaxed">
-          Essa oferta expira quando você fechar esta página.
+          Você chegou até aqui porque está preocupada com seu colesterol. Não deixe para amanhã o que pode começar hoje por R$27.
         </p>
 
         {/* Cronômetro */}
@@ -1471,15 +1503,15 @@ function ExitIntentPopup() {
         <div className="flex flex-col gap-3 w-full text-left mb-6 font-semibold text-xs md:text-sm text-dark/80">
           <div className="flex items-center gap-2.5">
             <Check className="w-4 h-4 text-[#2E7D52] flex-shrink-0" />
-            <span>PDF completo com 8 capítulos</span>
+            <span>Plano alimentar de 21 dias pronto para usar</span>
           </div>
           <div className="flex items-center gap-2.5">
             <Check className="w-4 h-4 text-[#2E7D52] flex-shrink-0" />
-            <span>Protocolo de 21 dias passo a passo</span>
+            <span>Cardápio + lista de compras inclusos</span>
           </div>
           <div className="flex items-center gap-2.5">
             <Check className="w-4 h-4 text-[#2E7D52] flex-shrink-0" />
-            <span>Cardápio semanal + lista de compras</span>
+            <span>Linguagem simples — sem termos médicos</span>
           </div>
         </div>
 
@@ -1488,7 +1520,7 @@ function ExitIntentPopup() {
           href={KIWIFY_DISCOUNT_URL} 
           className="w-full bg-[#2E7D52] hover:bg-[#256341] text-white py-4 px-6 rounded-full font-bold text-center text-sm md:text-base shadow-lg transition-transform duration-300 hover:scale-103 mb-3 uppercase tracking-wider"
         >
-          QUERO POR R$27 AGORA
+          QUERO COMEÇAR POR R$27
         </a>
 
         {/* Informação adicional */}
